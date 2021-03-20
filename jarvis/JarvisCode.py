@@ -90,6 +90,20 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M")
             speak(f"Sir, the time is {strTime}")
             print(f"Sir, the time is {strTime}")
+            
+         elif "read today's news" in query:
+            speak("News for today.. Lets begin")
+            url = "https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=d093053d72bc40248998159804e0e67d"
+            news = requests.get(url).text
+            news_dict = json.loads(news)
+            arts = news_dict['articles']
+            for article in arts:
+                print(article['title'])
+                speak(article['title'])
+
+                speak("Moving on to the next news..")
+
+            speak("Thanks for listening...")
 
         # elif 'email to' in query:
         #     try:
